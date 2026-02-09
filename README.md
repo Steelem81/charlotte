@@ -34,7 +34,8 @@ Charlotte scrapes, cleans, and indexes web articles into a vector database. You 
 - **Vector Database:** Pinecone (scalable semantic search)
 - **LLM:** Anthropic Claude (reasoning + summarization)
 - **Language:** Python
-- **Embeddings:** *(What embedding model are you using? OpenAI? Cohere?)*
+- **Embeddings:** OpenAI
+- **Gradio:** FrontEnd UI
 
 ## Architecture
 
