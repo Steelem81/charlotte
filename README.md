@@ -130,7 +130,8 @@ Challenge: LLM sometimes "hallucinates" beyond retrieved context
 Solution: Explicit prompt instructions to cite sources and stay grounded
 
 Future Improvements
-- [ ] Web UI instead of CLI
+- [x] Web UI instead of CLI
+- [ ] Update to use VoyageAI
 - [ ] Support for PDFs and academic papers
 - [ ] Multi-language support
 - [ ] Export notes/summaries to Markdown
