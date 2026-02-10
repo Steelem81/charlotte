@@ -7,7 +7,6 @@ from typing import Optional, Tuple
 from urllib.parse import urlparse
 import validators
 import time
-
 from models import Article, ArticleChunk, ArticleMetadata
 from services.embedding_service import embedding_service
 from services.database_service import database_service

@@ -1,6 +1,7 @@
 from typing import List, Union
 import numpy as np
 import openai
+import voyageai
 from sentence_transformers import SentenceTransformer
 from utils.config import config
 from utils.text_processing import chunk_text
@@ -13,29 +14,34 @@ class EmbeddingService:
 
     def _load_model(self):
         try:
-            if self.model_name.startswith("text-embedding"):
-               self.use_openai = True
-            else:
-                self.use_openai = False
-                print(f"Loading embedding model: {self.model_name}")
-                self.model = SentenceTransformer(self.model_name)
-                print("Embedding model loaded successfully")
+            self.use_openai = False
+            print(f"Loading embedding model: {self.model_name}")
+            self.model = voyageai.Client(api_key=config.VOYAGEAI_API_KEY)
+            print("Embedding model loaded successfully")
         except Exception as e:
             print(f"Error loading embedding model: {e}")
             raise
 
     def generate_embedding(self, text: str) -> List[float]:
-        if self.use_openai:
-            return self._generate_openai_embedding(text)
-        else: 
-            return self._generate_local_embeddings(text)
+        try:
+            result = self.model.embed(
+                text,
+                self.model_name
+            )
+            return result.embeddings
+        except Exception as e:
+            print(f"Error generating embedding:{e}")
         
     def generate_embeddings(self, texts: List[str]) -> List[List[float]]:
-        if self.use_openai:
-            return[self._generate_openai_embedding(text) for text in texts]
-        else:
-            return self._generate_local_embeddings(texts)
-        
+        try:
+            result = self.model.embed(
+                texts,
+                self.model_name
+            )
+            return result.embeddings
+        except Exception as e:
+            print(f"Error generating embedding:{e}")
+    
     def _generate_local_embeddings(self, text: str) -> List[float]:
         embedding = self.model.encode(text, convert_to_numpy=True)
         return embedding.tolist()
@@ -74,9 +80,6 @@ class EmbeddingService:
     
     @property
     def embedding_dimension(self) -> int:
-        if self.use_openai:
-            return 1536
-        else:
-            return self.model.get_sentence_embedding_dimension()
+        return 1024 ##voyage-4
 
 embedding_service = EmbeddingService()
