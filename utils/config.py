@@ -8,7 +8,6 @@ class Config:
 
     # API Keys
     ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
-    OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
     PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
     VOYAGEAI_API_KEY = os.getenv("VOYAGEAI_API_KEY")
 

@@ -1,6 +1,5 @@
 from typing import List, Union
 import numpy as np
-import openai
 import voyageai
 from sentence_transformers import SentenceTransformer
 from utils.config import config
@@ -45,19 +44,6 @@ class EmbeddingService:
     def _generate_local_embeddings(self, text: str) -> List[float]:
         embedding = self.model.encode(text, convert_to_numpy=True)
         return embedding.tolist()
-
-    def _generate_openai_embedding(self, text: str) -> List[float]:
-        try:
-            openai.api_key = config.OPENAI_API_KEY
-
-            response = openai.embeddings.create(
-                model=self.model_name,
-                input=text
-            )
-            return response.data[0].embedding
-        except Exception as e:
-            print(f"Error generating OpenAI embedding: {e}")
-            raise
     
     def chunk_and_embed(
             self,
