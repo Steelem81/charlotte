@@ -16,7 +16,7 @@ class Config:
     PINECONE_INDEX_NAME = os.getenv("PINECONE_INDEX_NAME", "research-assistant")
 
     # Model Settings
-    EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "senetence_transformers/all-MiniLM-L6_v2")
+    EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "voyage-4")
     LLM_MODEL = os.getenv("LLM_MODEL", "claude-haiku-4-5-20251001-v1:0")
 
     # Chunking Settings

@@ -1,7 +1,6 @@
 from typing import List, Union
 import numpy as np
 import voyageai
-from sentence_transformers import SentenceTransformer
 from utils.config import config
 from utils.text_processing import chunk_text
 
@@ -40,10 +39,6 @@ class EmbeddingService:
             return result.embeddings
         except Exception as e:
             print(f"Error generating embedding:{e}")
-    
-    def _generate_local_embeddings(self, text: str) -> List[float]:
-        embedding = self.model.encode(text, convert_to_numpy=True)
-        return embedding.tolist()
     
     def chunk_and_embed(
             self,
