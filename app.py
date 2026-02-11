@@ -208,7 +208,7 @@ def synthesize_topic(topic: str) -> str:
 # Create Gradio Interface
 # ============================================================================
 
-with gr.Blocks(theme=gr.themes.Soft()) as app:
+with gr.Blocks() as app:
     
     gr.Markdown("""
     # 🔬 Personal Research Assistant
@@ -365,9 +365,10 @@ with gr.Blocks(theme=gr.themes.Soft()) as app:
 
 if __name__ == "__main__":
     app.launch(
-        server_name="127.0.0.1",  # Changed from 0.0.0.0 to localhost IP
+        server_name="127.0.0.1", 
         server_port=7860,
         share=False,
         show_error=True,
-        quiet=False
+        quiet=False,
+        theme=gr.themes.Glass()
     )
