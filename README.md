@@ -132,8 +132,8 @@ Solution: Explicit prompt instructions to cite sources and stay grounded
 Future Improvements
 - [x] Web UI instead of CLI
 - [x] Update to use VoyageAI
-- [ ] Simplify Embedding service
-- [ ] Update => Gradio6
+- [x] Simplify Embedding service
+- [x] Update => Gradio6
 - [ ] Support for PDFs and academic papers
 - [ ] Multi-language support
 - [ ] Export notes/summaries to Markdown
